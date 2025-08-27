@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pace-calculator"
+version = "1.0.0"
+description = "A beautiful, feature-rich pace calculator for runners"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["running", "pace", "calculator", "fitness", "sports"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.6"
+dependencies = [
+    "colorama>=0.4.6",
+]
+
+[project.scripts]
+pacecalc = "pacecalc:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/pace-calculator"
+Repository = "https://github.com/yourusername/pace-calculator"
+Issues = "https://github.com/yourusername/pace-calculator/issues"
+
+[tool.setuptools]
+py-modules = ["pacecalc"]
