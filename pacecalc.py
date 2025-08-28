@@ -54,11 +54,11 @@ class PaceCalculator:
     
     # Training zones based on pace (simplified)
     TRAINING_ZONES = {
-        "Easy": (0.8, 0.9),      # 80-90% of threshold pace
-        "Threshold": (0.9, 1.0),  # 90-100% of threshold pace
-        "Tempo": (1.0, 1.05),     # 100-105% of threshold pace
-        "VO2 Max": (1.05, 1.15),  # 105-115% of threshold pace
-        "Speed": (1.15, 1.25),    # 115-125% of threshold pace
+        "Easy": (1.15, 1.25),       # 115–125% of threshold pace 
+        "Threshold": (1.05, 1.15),  # 105–115% of threshold pace
+        "Tempo": (1.0, 1.05),       # 100–105% of threshold pace
+        "VO2 Max": (0.9, 1.0),      # 90–100% of threshold pace
+        "Speed": (0.8, 0.9)         # 80–90% of threshold pace
     }
     
     def __init__(self):
