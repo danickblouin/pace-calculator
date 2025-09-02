@@ -44,9 +44,6 @@ class PaceCalculator:
         "marathon": 42.195,
         "hm": 21.0975,  # half-marathon
         "half-marathon": 21.0975,
-        "10k": 10.0,
-        "5k": 5.0,
-        "1k": 1.0,
         "400m": 0.4,
         "800m": 0.8,
         "1mi": 1.609344,
@@ -88,12 +85,17 @@ class PaceCalculator:
         if distance in self.DISTANCE_UNITS:
             return self.DISTANCE_UNITS[distance]
         
-        # Check for units
-        for unit, multiplier in self.DISTANCE_UNITS.items():
+        # Check for units (sort by length, longest first to avoid partial matches)
+        units_sorted = sorted(self.DISTANCE_UNITS.items(), key=lambda x: len(x[0]), reverse=True)
+        for unit, multiplier in units_sorted:
             if distance.endswith(unit):
                 try:
                     value = distance.removesuffix(unit)
-                    return float(value) * multiplier
+                    # Ensure the value is not empty and is a valid number
+                    if value and value != ".":
+                        # Try to parse as float to ensure it's valid
+                        float_value = float(value)
+                        return float_value * multiplier
                 except ValueError:
                     raise InputError(distance, "distance")
         
@@ -259,6 +261,18 @@ class PaceCalculator:
         if value in self.DISTANCE_UNITS:
             return False
         
+        # Check for distance units (these are never times)
+        units_sorted = sorted(self.DISTANCE_UNITS.items(), key=lambda x: len(x[0]), reverse=True)
+        for unit, multiplier in units_sorted:
+            if value.endswith(unit):
+                try:
+                    # Try to parse the numeric part
+                    numeric_part = value.removesuffix(unit)
+                    float(numeric_part)
+                    return False  # It's a valid distance with unit
+                except ValueError:
+                    pass  # Not a valid distance, continue checking
+        
         # Check for time indicators
         if any(x in value for x in "hms:"):
             return True
@@ -340,7 +354,7 @@ Examples:
   %(prog)s marathon at 4:30        # Calculate time for marathon at 4:30 min/km pace
   %(prog)s 1:30:00 at 5:00        # Calculate distance for 1:30:00 at 5:00 min/km pace
   
-Distance formats: 5km, 10k, 21.0975km, marathon, half-marathon, 1mi
+Distance formats: 5km, 10km, 2.5km, 5.5km, marathon, half-marathon, 1mi
 Time formats: 45:00, 1:30:00, 1h30m, 90m
 Pace formats: 4:30, 5.5 (minutes per kilometer)
         """

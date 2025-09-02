@@ -75,8 +75,11 @@ python pacecalc.py marathon in 3:30:00
 # Marathon at 5:00 min/km pace
 python pacecalc.py marathon at 5:00
 
-# 10k at 4:30 min/km pace
-python pacecalc.py 10k at 4:30
+# 10km at 4:30 min/km pace
+python pacecalc.py 10km at 4:30
+
+# 5.5km at 5:00 min/km pace
+python pacecalc.py 5.5km at 5:00
 ```
 
 #### Calculate Distance (Time + Pace)
@@ -87,7 +90,7 @@ python pacecalc.py 1:00:00 at 5:00
 
 ### Input Formats
 
-- **Distances**: `5km`, `10k`, `marathon`, `half-marathon`, `5mi`
+- **Distances**: `5km`, `10km`, `2.5km`, `5.5km`, `marathon`, `half-marathon`, `5mi`
 - **Times**: `45:00`, `1:30:00`, `1h30m`, `90m`
 - **Paces**: `4:30` (4:30 min/km), `5.5` (5.5 min/km)
 
